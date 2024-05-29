@@ -126,6 +126,7 @@
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
+    $('#patient').html(JSON.stringify(p, null, 4));
   };
 
 })(window);
