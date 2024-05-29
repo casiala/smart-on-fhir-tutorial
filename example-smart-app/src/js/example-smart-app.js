@@ -1,4 +1,6 @@
 (function (window) {
+  var patientData;
+
   window.extractData = function () {
     var ret = $.Deferred();
 
@@ -48,6 +50,7 @@
           var ldl = byCodes("2089-1");
 
           console.log("patient", patient);
+          patientData = patient;
 
           var p = defaultPatient();
           p.birthdate = patient.birthDate;
