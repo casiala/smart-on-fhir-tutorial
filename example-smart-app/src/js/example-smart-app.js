@@ -82,12 +82,15 @@
 
           var echo = "";
 
-          $.post(url, postData, function (data) {
-            console.log("Echo:", data);
-            echo = data;
-
-            anotherFunction(echo);
-          });
+          $.post(url, postData)
+            .done(function (data) {
+              console.log("Echo:", data);
+              echo = data;
+              anotherFunction(echo);
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+              console.error("Error:", textStatus, errorThrown);
+            });
 
           ret.resolve(p);
         });
