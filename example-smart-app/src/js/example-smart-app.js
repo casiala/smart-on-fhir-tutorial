@@ -80,17 +80,25 @@
             // Add more key-value pairs as needed
           };
 
+          var jsonString = JSON.stringify(postData);
+
           var echo = "";
 
-          $.post(url, postData)
-            .done(function (data) {
+          $.ajax({
+            url: url,
+            type: "POST",
+            data: jsonString,
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
               console.log("Echo:", data);
               echo = data;
               anotherFunction(echo);
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
               console.error("Error:", textStatus, errorThrown);
-            });
+            },
+          });
 
           ret.resolve(p);
         });
