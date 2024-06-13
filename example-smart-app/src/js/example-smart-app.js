@@ -70,6 +70,26 @@
           p.hdl = getQuantityValueAndUnit(hdl[0]);
           p.ldl = getQuantityValueAndUnit(ldl[0]);
 
+          // I need to call an API and get the result
+          // I need to pass a string to the API
+
+          var url = "http://ubrdomibussmp.eastus.cloudapp.azure.com:7000/echo";
+          var postData = {
+            key1: "TEST",
+            key2: "TEST",
+            // Add more key-value pairs as needed
+          };
+
+          var echo = "";
+
+          $.post(url, postData, function (data) {
+            console.log(data);
+            echo = data;
+            ret.resolve(p);
+          });
+
+          console.log("Echo:", echo);
+
           ret.resolve(p);
         });
       } else {
@@ -138,5 +158,6 @@
     $("#ldl").html(p.ldl);
     $("#hdl").html(p.hdl);
     $("#patient").html(JSON.stringify(p, null, 4));
+    $("#echo").html(echo);
   };
 })(window);
