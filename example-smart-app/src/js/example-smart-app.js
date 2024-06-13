@@ -84,21 +84,42 @@
 
           var echo = "";
 
-          $.ajax({
-            url: url,
-            type: "POST",
-            data: jsonString,
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (data) {
+          $.post(url, jsonString)
+            .done(function (data) {
               console.log("Echo:", data);
               echo = data;
               anotherFunction(echo);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
               console.error("Error:", textStatus, errorThrown);
-            },
-          });
+            });
+
+          // var url = "http://ubrdomibussmp.eastus.cloudapp.azure.com:7000/echo";
+          // var postData = {
+          //   key1: "TEST",
+          //   key2: "TEST",
+          //   // Add more key-value pairs as needed
+          // };
+
+          // var jsonString = JSON.stringify(postData);
+
+          // var echo = "";
+
+          // $.ajax({
+          //   url: url,
+          //   type: "POST",
+          //   data: jsonString,
+          //   contentType: "application/json; charset=utf-8",
+          //   dataType: "json",
+          //   success: function (data) {
+          //     console.log("Echo:", data);
+          //     echo = data;
+          //     anotherFunction(echo);
+          //   },
+          //   error: function (jqXHR, textStatus, errorThrown) {
+          //     console.error("Error:", textStatus, errorThrown);
+          //   },
+          // });
 
           ret.resolve(p);
         });
