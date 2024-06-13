@@ -83,12 +83,11 @@
           var echo = "";
 
           $.post(url, postData, function (data) {
-            console.log(data);
+            console.log("Echo:", data);
             echo = data;
-            ret.resolve(p);
-          });
 
-          console.log("Echo:", echo);
+            anotherFunction(echo);
+          });
 
           ret.resolve(p);
         });
@@ -143,6 +142,11 @@
     } else {
       return undefined;
     }
+  }
+
+  function anotherFunction(responseData) {
+    // Use responseData here
+    console.log("Response data in another function:", responseData);
   }
 
   window.drawVisualization = function (p) {
