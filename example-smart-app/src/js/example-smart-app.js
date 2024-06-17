@@ -94,32 +94,32 @@
           //     console.error("Error:", textStatus, errorThrown);
           //   });
 
-          var url = "http://ubrdomibussmp.eastus.cloudapp.azure.com:7000/echo";
-          var postData = {
-            key1: "TEST",
-            key2: "TEST",
-            // Add more key-value pairs as needed
-          };
+          // var url = "http://ubrdomibussmp.eastus.cloudapp.azure.com:7000/echo";
+          // var postData = {
+          //   key1: "TEST",
+          //   key2: "TEST",
+          //   // Add more key-value pairs as needed
+          // };
 
-          var jsonString = JSON.stringify(postData);
+          // var jsonString = JSON.stringify(postData);
 
-          var echo = "";
+          // var echo = "";
 
-          $.ajax({
-            url: url,
-            type: "POST",
-            data: jsonString,
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (data) {
-              console.log("Echo:", data);
-              echo = data;
-              anotherFunction(echo);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-              console.error("Error:", textStatus, errorThrown);
-            },
-          });
+          // $.ajax({
+          //   url: url,
+          //   type: "POST",
+          //   data: jsonString,
+          //   contentType: "application/json; charset=utf-8",
+          //   dataType: "json",
+          //   success: function (data) {
+          //     console.log("Echo:", data);
+          //     echo = data;
+          //     anotherFunction(echo);
+          //   },
+          //   error: function (jqXHR, textStatus, errorThrown) {
+          //     console.error("Error:", textStatus, errorThrown);
+          //   },
+          // });
 
           ret.resolve(p);
         });
@@ -194,6 +194,16 @@
     $("#ldl").html(p.ldl);
     $("#hdl").html(p.hdl);
     $("#patient").html(JSON.stringify(p, null, 4));
-    $("#echo").html(echo);
+
+    var url = "http://localhost:3333/msg"; // Replace with your API URL
+
+    $.get(url, function (data) {
+      var echo = JSON.stringify(data, null, 4); // Convert the response to a string
+      $("#echo").html(echo); // Display the response
+    }).fail(function () {
+      console.error("Error occurred while making GET request");
+    });
+
+    // $("#echo").html(echo);
   };
 })(window);
