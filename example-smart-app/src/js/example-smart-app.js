@@ -204,6 +204,22 @@
       console.error("Error occurred while making GET request");
     });
 
+    var postUrl = "http://localhost:3333/echo";
+
+    $.ajax({
+      url: postUrl,
+      type: "POST",
+      data: JSON.stringify(p),
+      contentType: "application/json",
+      success: function (data) {
+        var echo = JSON.stringify(data, null, 4); // Convert the response to a string
+        $("#echo").html(echo); // Display the response
+      },
+      error: function () {
+        console.error("Error occurred while making POST request");
+      },
+    });
+
     // $("#echo").html(echo);
   };
 })(window);
