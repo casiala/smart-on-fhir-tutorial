@@ -193,18 +193,18 @@
     $("#diastolicbp").html(p.diastolicbp);
     $("#ldl").html(p.ldl);
     $("#hdl").html(p.hdl);
-    $("#patient").html(JSON.stringify(p, null, 4));
+    //$("#patient").html(JSON.stringify(p, null, 4));
 
-    var url = "http://localhost:3333/msg"; // Replace with your API URL
+    // var url = "http://localhost:3333/msg"; // Replace with your API URL
 
-    $.get(url, function (data) {
-      var echo = JSON.stringify(data, null, 4); // Convert the response to a string
-      $("#echo").html(echo); // Display the response
-    }).fail(function () {
-      console.error("Error occurred while making GET request");
-    });
+    // $.get(url, function (data) {
+    //   var echo = JSON.stringify(data, null, 4); // Convert the response to a string
+    //   $("#echo").html(echo); // Display the response
+    // }).fail(function () {
+    //   console.error("Error occurred while making GET request");
+    // });
 
-    var postUrl = "http://localhost:3333/echo";
+    var postUrl = "http://localhost:3334/echo";
 
     $.ajax({
       url: postUrl,
